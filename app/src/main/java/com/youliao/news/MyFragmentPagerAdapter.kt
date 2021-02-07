@@ -3,18 +3,21 @@ package com.youliao.news
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import com.youliao.news.fragment.NewsTabFragment
+import com.youliao.news.fragment.VideoTabFragment
 
-class MyFragmentPagerAdapter(
-    fragmentManager: FragmentManager,
-    private val fragmentList: List<Fragment>
-) :
+class MyFragmentPagerAdapter(fragmentManager: FragmentManager) :
     FragmentStatePagerAdapter(fragmentManager) {
 
     override fun getItem(position: Int): Fragment {
-        return fragmentList[position]
+        return when (position) {
+            0 -> NewsTabFragment()
+            1 -> VideoTabFragment()
+            else -> NewsTabFragment()
+        }
     }
 
     override fun getCount(): Int {
-        return fragmentList.size
+        return 2
     }
 }

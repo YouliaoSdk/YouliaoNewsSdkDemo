@@ -91,6 +91,9 @@
 
    ```java
    // java
+   // *重要*,请添加下面这行
+   AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+   // sdk方法
    // 此方法不会请求网络，请放在Application中调用，appid和secret参数会由渠杰提供，channel由接入方填入
    YouliaoNewsSdk.init(this, "appid", "apikey", "channel")
    	.setShareAppId("qqappid", "wxappid"); // qqappid，wxappid
@@ -115,6 +118,9 @@
 
    ```kotlin
    // kotlin
+   // *重要*,请添加下面这行
+   AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+   // sdk方法
    YouliaoNewsSdk.apply {
      // 此方法不会请求网络，请放在Application中调用，appid和secret参数会由渠杰提供，channel由接入方填入
      init(this@MyApplication, "appid", "apikey", "channel")

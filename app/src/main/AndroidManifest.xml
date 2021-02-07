@@ -38,7 +38,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
 
         <activity android:name=".java.JavaMainActivity"></activity>
 

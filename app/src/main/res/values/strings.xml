@@ -2,4 +2,5 @@
     <string name="app_name">YouliaoNewsSdk</string>
     <string name="title_news">新闻</string>
     <string name="title_video">视频</string>
+    <string name="title_small_video">小视频</string>
 </resources>

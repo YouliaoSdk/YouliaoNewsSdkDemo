@@ -1,20 +1,13 @@
 package com.youliao.news
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import com.youliao.news.fragment.NewsTabFragment
-import com.youliao.news.fragment.VideoTabFragment
-import com.youliao.sdk.news.YouliaoNewsSdk
-import com.youliao.sdk.news.data.bean.NewsBean
-import com.youliao.sdk.news.data.bean.TabBean
-import com.youliao.sdk.news.provider.ClickActionProvider
 
 class MainActivity : AppCompatActivity() {
 
-    private val fragments = arrayListOf<Fragment>()
     private lateinit var viewpager: ViewPager
     private lateinit var bottomNavigationView: BottomNavigationView
 
@@ -27,9 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViewPagerFragment() {
         viewpager = findViewById(R.id.view_pager)
-        fragments.add(NewsTabFragment())
-        fragments.add(VideoTabFragment())
-        val myFragmentPagerAdapter = MyFragmentPagerAdapter(supportFragmentManager, fragments)
+        val myFragmentPagerAdapter = MyFragmentPagerAdapter(supportFragmentManager)
         viewpager.adapter = myFragmentPagerAdapter
         viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(p0: Int) {
@@ -47,11 +38,11 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        YouliaoNewsSdk.setClickActionProvider(object : ClickActionProvider {
-            override fun onItemClick(newsBean: NewsBean, type: String, tabBean: TabBean?) {
-                WebViewDemoActivity.start(this@MainActivity, newsBean)
-            }
-        })
+//        YouliaoNewsSdk.setClickActionProvider(object : ClickActionProvider {
+//            override fun onItemClick(newsBean: NewsBean, type: String, tabBean: TabBean?) {
+//                WebViewDemoActivity.start(this@MainActivity, newsBean)
+//            }
+//        })
     }
 
     private fun initBottomNavigation() {
@@ -71,5 +62,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration?) {
+        super.onConfigurationChanged(newConfig)
     }
 }
