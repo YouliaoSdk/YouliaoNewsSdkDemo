@@ -44,6 +44,7 @@
 1.1.5-rc02版本对应的adroi sdk版本为`3.7.3`，请尽量保持一致，以免有兼容性问题
 
 4. 如果要使用`头条内容合作sdk`：
+
     1） 添加sdk，可以在sdk目录下载`dpsdk_2.3.1.0.aar`
 
         implementation(name: 'dpsdk_2.3.1.0', ext: 'aar')
