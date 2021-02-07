@@ -101,7 +101,7 @@
 
     6）由于小说sdk aar只提供了`armeabi-v7a`、`arm64-v8a`的so库，所以需要根据自身需要设置正确的`abiFilters`
 
-## 二、初始化及基本配置
+### 二、初始化及基本配置
 
 1. 在Application中的`onCreate`添加
 
@@ -160,7 +160,7 @@
    }
    ```
 
-## 三、使用
+### 三、使用
 
 1. 创建NewsFragment并显示
 
@@ -229,7 +229,7 @@
    fun scrollToTop(smooth: Boolean = false)
    ```
 
-## 四、其他
+### 四、其他
 1. 关于混淆
     混淆规则已经打在aar包里
 
