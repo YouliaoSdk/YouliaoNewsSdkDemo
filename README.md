@@ -1,6 +1,21 @@
 # 有料信息流sdk接入文档
 
-## 一、增加依赖
+|  版本号 | 日期 | 说明 |
+| ---- | ---- | --- |
+| 1.1.5-rc02 | 2021-2-7 | 创建文档，支持穿山甲小说sdk |
+
+## SDK接入前说明
+
+新用户需要联系商务申请必要的参数，目前需要的此参数有以下：
+
+1.Appid
+
+2.Apikey
+
+请务必保存好这2个参数，这些是sdk初始化必须的参数，否则sdk不能正常运行。
+
+## SDK接入
+### 一、增加依赖
 
 1. 在主project的`allprojects` -> `repositories`添加
    ```groovy
@@ -44,7 +59,8 @@
             android:authorities="${applicationId}.BDDPProvider"
             android:exported="false" />
 
-5. 如果要接入头条小说sdk：
+
+5. 如果要接入穿山甲小说sdk：
 
     1）添加sdk，可以在sdk目录下载`open_novel_sdk_1.0.2.aar`
   
