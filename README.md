@@ -41,7 +41,7 @@
 
 3. 如果要使用`adroi sdk`，并且之前没有接入过`adroi sdk`，请按照`adroi sdk`文档进行接入
 **注意**
-1.1.5-rc01版本对应的adroi sdk版本为`3.7.3`，请尽量保持一致，以免有兼容性问题
+1.1.5-rc02版本对应的adroi sdk版本为`3.7.3`，请尽量保持一致，以免有兼容性问题
 
 4. 如果要使用`头条内容合作sdk`：
     1） 添加sdk，可以在sdk目录下载`dpsdk_2.3.1.0.aar`
@@ -52,13 +52,12 @@
  
         implementation "com.bytedance.applog:RangersAppLog-Lite-cn:5.4.1-rc.0-utility"
     
-    3) 在`AndroidMenifest.xml`中添加：
+    3）如果`AndroidMenifest.xml`中添加：
 
         <provider
             android:name="com.bytedance.sdk.dp.act.DPProvider"
             android:authorities="${applicationId}.BDDPProvider"
             android:exported="false" />
-
 
 5. 如果要接入穿山甲小说sdk：
 
