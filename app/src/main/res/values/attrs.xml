@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FloatingProgressBar">
+        <attr format="color" name="progress_color" />
+        <attr format="color" name="progress_background_color" />
+        <attr format="dimension" name="progress_stroke_width" />
+        <attr name="android:textSize" />
+        <attr name="android:textColor" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundFrameLayout">
+        <attr name="radius" format="dimension" />
+    </declare-styleable>
+</resources>

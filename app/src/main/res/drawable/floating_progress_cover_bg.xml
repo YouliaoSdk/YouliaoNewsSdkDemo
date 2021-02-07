@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><!--drawable/btn_fab_default.xml-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--//设置边框-->
+    <item>
+        <shape
+            android:shape="oval"
+            android:useLevel="false">
+            <solid android:color="#00000000"/>
+            <stroke
+                android:width="5dp"
+                android:color="@color/youliao_white"/>
+            <size
+                android:width="37dp"
+                android:height="37dp"/>
+        </shape>
+    </item>
+</layer-list>

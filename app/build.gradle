@@ -1,0 +1,95 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "com.youliao.news"
+        minSdkVersion 17
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders.put("APPLOG_SCHEME", "APPLOG_SCHEME".toLowerCase())
+        packagingOptions {
+            exclude 'META-INF/kotlinx-coroutines-core.kotlin_module'
+            exclude 'res/cp_ad_txt.png'
+        }
+        multiDexEnabled true
+    }
+    signingConfigs {
+        releaseConfig {
+            keyAlias 'youliaosdk'
+            keyPassword 'youliaosdk'
+            storeFile file('../youliaoSdk.keystore')
+            storePassword 'youliaosdk'
+        }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
+            ndk {
+                abiFilters "armeabi"
+            }
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
+            ndk {
+                abiFilters "armeabi"
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:coordinatorlayout:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:multidex:1.0.3'
+
+    def youliao_version = "1.1.5"
+    implementation "com.youliao.sdk:news:1.1.5-rc02"
+    implementation "com.youliao.sdk:amaplocation:$youliao_version"
+//    implementation "com.youliao.sdk:msa:$youliao_version"
+    implementation "com.youliao.sdk:glide4:$youliao_version"
+
+    // adroi
+    implementation files('libs/adroi.poly.sdk_3.7.3.jar')
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.15'
+    implementation(name: 'GDTSDK.unionNoPlugin.4.294.1164', ext: 'aar')
+    compileOnly fileTree('libs/tbs_sdk_thirdapp_v4.3.0.1020_43633_compile_only.jar')
+    implementation(name: 'kssdk-ad-3.3.5.3', ext: 'aar')
+    implementation(name: 'open_ad_sdk_3251', ext: 'aar')
+    implementation(name: 'Baidu_MobAds_SDK_5.91', ext: 'aar')
+
+    // 内容合作sdk
+    implementation(name: 'dpsdk_2.3.1.0', ext: 'aar')
+    implementation "com.bytedance.applog:RangersAppLog-Lite-cn:5.4.1-rc.0-utility"
+    // oaid
+//    implementation(name: 'msa_mdid_1.0.13', ext: 'aar')
+    // QQ
+    implementation files('libs/open_sdk_r4de39fa_lite.jar')
+
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.youliao.news.view.RoundFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="56dp"
+    android:layout_height="56dp"
+    android:background="@drawable/floating_progress_bg"
+    android:clickable="false"
+    app:radius="28dp">
+
+    <ImageView
+        android:id="@+id/float_progress_icon"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/yl_float" />
+
+    <TextView
+        android:id="@+id/floating_integral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="+ 20"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/floating_progress_cover_bg" />
+
+    <com.youliao.news.view.FloatingProgressBar
+        android:id="@+id/float_progress_bar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        app:progress_background_color="#FFCBCB"
+        app:progress_color="#E94525"
+        app:progress_stroke_width="4dp" />
+
+</com.youliao.news.view.RoundFrameLayout>
