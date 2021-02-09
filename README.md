@@ -33,7 +33,7 @@
    ```groovy
    dependencies {
        // 增加下面依赖
-       implementation 'com.youliao.sdk:news:1.1.5-rc02'
+       implementation 'com.youliao.sdk:news:1.1.5-rc03'
        // 如果使用glide4.x，增加依赖
        implementation 'com.youliao.sdk:glide4:1.1.5'
    }
@@ -41,7 +41,7 @@
 
 3. 如果要使用`adroi sdk`，并且之前没有接入过`adroi sdk`，请按照`adroi sdk`文档进行接入
 **注意**
-1.1.5-rc02版本对应的adroi sdk版本为`3.7.3`，请尽量保持一致，以免有兼容性问题
+1.1.5-rc03版本对应的adroi sdk版本为`3.7.3`，请尽量保持一致，以免有兼容性问题
 
 4. 如果要使用`头条内容合作sdk`：
 
@@ -113,7 +113,7 @@
    // 此方法不会请求网络，请放在Application中调用，appid和secret参数会由渠杰提供，channel由接入方填入
    YouliaoNewsSdk.init(this, "appid", "apikey", "channel")
    	.setShareAppId("qqappid", "wxappid"); // qqappid，wxappid
-    // 如果接入oaid，并且oaid版本为：1.0.23，可以依赖'com.youliao.sdk:msa:1.1.5'，或者自行实现OaidProvider接口
+    // 如果接入oaid，并且oaid版本为：1.0.25，可以依赖'com.youliao.sdk:msa:1.1.5'，或者自行实现OaidProvider接口
     .setOaidProvider(new MasOaidProvider(this))
     // 可以依赖'com.youliao.sdk:amaplocation:1.1.5'，或者自行实现LocationProvider接口
     // 如果在NewsFragment.newInstance中有传入city，请不要再调用该方法
@@ -141,7 +141,7 @@
      // 此方法不会请求网络，请放在Application中调用，appid和secret参数会由渠杰提供，channel由接入方填入
      init(this@MyApplication, "appid", "apikey", "channel")
      setShareAppId("qqappid","wxappid")
-    // 如果接入oaid，并且oaid版本为：1.0.23，可以依赖'com.youliao.sdk:msa:1.1.5'，或者自行实现OaidProvider接口
+    // 如果接入oaid，并且oaid版本为：1.0.25，可以依赖'com.youliao.sdk:msa:1.1.5'，或者自行实现OaidProvider接口
      setOaidProvider(MasOaidProvider(this@MyApplication))
      // 可以依赖'com.youliao.sdk:amaplocation:1.1.5'，或者自行实现LocationProvider接口，或者不需要本地频道
      // 如果在NewsFragment.newInstance中有传入city，请不要再调用该方法
