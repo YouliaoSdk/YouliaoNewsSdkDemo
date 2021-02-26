@@ -2,7 +2,7 @@
 
 |  版本号 | 日期 | 说明 |
 | ---- | ---- | --- |
-| 1.1.5-rc02 | 2021-2-7 | 创建文档，支持穿山甲小说sdk |
+| 1.1.5-rc01 | 2021-2-7 | 创建文档，支持穿山甲小说sdk |
 | 1.1.6-rc01 | 2021-2-26 | 支持穿山甲小说单频道，支持快手小视频(开发中)|
 
 ## SDK接入前说明
@@ -34,7 +34,7 @@
    ```groovy
    dependencies {
        // 增加下面依赖
-       implementation 'com.youliao.sdk:news:1.1.5-rc03'
+       implementation 'com.youliao.sdk:news:1.1.5-rc01'
        // 如果使用glide4.x，增加依赖
        implementation 'com.youliao.sdk:glide4:1.1.5'
    }
