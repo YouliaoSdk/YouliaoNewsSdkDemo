@@ -3,6 +3,7 @@
 |  版本号 | 日期 | 说明 |
 | ---- | ---- | --- |
 | 1.1.5-rc02 | 2021-2-7 | 创建文档，支持穿山甲小说sdk |
+| 1.1.6-rc01 | 2021-3-5 | 支持穿山甲小说单频道，支持快手小视频 |
 
 ## SDK接入前说明
 
@@ -76,7 +77,7 @@
       
     4）在`YouliaoNewsSdk.init(this, "appid", "apikey", "channel")`方法下面添加：
   
-        YouliaoNewsSdk.initBytedanceNovel(appLogId, "应用名称") // appLogId有料这边会提供，该方法不会有网络请求，可以在application中调用
+        YouliaoNewsSdk.initBytedanceNovel(appid, "应用名称") // appid有料这边会提供，该方法不会有网络请求，可以在application中调用
       
     5）如果使用`AndroidX`需要添加以下到`AndroidMenifest.xml`
   
