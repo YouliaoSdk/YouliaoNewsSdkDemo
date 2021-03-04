@@ -3,7 +3,10 @@
 |  版本号 | 日期 | 说明 |
 | ---- | ---- | --- |
 | 1.1.5-rc01 | 2021-2-7 | 创建文档，支持穿山甲小说sdk |
-| 1.1.6-rc01 | 2021-2-26 | 支持穿山甲小说单频道，支持快手小视频(开发中)|
+| 1.1.6-rc01 | 2021-3-4 | 支持穿山甲小说单频道，支持快手小视频|
+
+## CHANGELOG
+- [CHANGELOG.md](./CHANGELOG.md)
 
 ## SDK接入前说明
 
@@ -34,23 +37,30 @@
    ```groovy
    dependencies {
        // 增加下面依赖
-       implementation 'com.youliao.sdk:news:1.1.5-rc01'
+       implementation 'com.youliao.sdk:news:1.1.6-rc01'
        // 如果使用glide4.x，增加依赖
        implementation 'com.youliao.sdk:glide4:1.1.5'
    }
    ```
 
-3. 如果要使用`adroi sdk`，并且之前没有接入过`adroi sdk`，请按照`adroi sdk`文档进行接入
+3. 接入`adroi sdk`，并且之前没有接入过`adroi sdk`，请按照`adroi sdk`文档进行接入
 **注意**
-1.1.5-rc03版本对应的adroi sdk版本为`3.7.3`，请尽量保持一致，以免有兼容性问题
+1.1.6-rc01版本对应的adroi sdk版本为`3.7.7`，请尽量保持一致，以免有兼容性问题
 
-4. 如果要使用`头条内容合作sdk`：
+4. 接入`头条内容合作sdk`：
 
-    1） 添加sdk，可以在sdk目录下载`dpsdk_2.3.1.0.aar`
+    1） 添加sdk，可以在sdk目录下载`dpsdk_2.4.0.2.aar`
 
-        implementation(name: 'dpsdk_2.3.1.0', ext: 'aar')
+        implementation(name: 'dpsdk_2.4.0.2', ext: 'aar')
+        // 新增依赖，穿山甲小说sdk 需要相同依赖。如果两个sdk都接入只需要添加一次
+        implementation ("com.volcengine:apm_insight_crash:1.3.7") {
+            exclude group: 'com.android.support'
+            exclude group: 'com.bytedance.applog'
+        }
 
-    2）如果之前有添加过`AppLog`库，或已接入内容合作sdk（该sdk依赖AppLog），需要`替换`AppLog aar包为：
+    2）需要接入穿山甲sdk，请参照adroi文档进行接入
+
+    3）如果之前有添加过`AppLog`库，或已接入内容合作sdk（该sdk依赖AppLog），需要`替换`AppLog aar包为：
  
         implementation "com.bytedance.applog:RangersAppLog-Lite-cn:5.4.1-rc.0-utility"
     
@@ -61,16 +71,19 @@
             android:authorities="${applicationId}.BDDPProvider"
             android:exported="false" />
 
-5. 如果要接入穿山甲小说sdk：
+5. 接入`穿山甲小说sdk`：
 
-    1）添加sdk，可以在sdk目录下载`open_novel_sdk_1.0.2.aar`
+    1）添加sdk，可以在sdk目录下载`open_novel_sdk_1.0.6.aar`
   
-        implementation(name: 'open_novel_sdk_1.0.2', ext: 'aar')
-      
-    2）需要替换专用穿山甲sdk3404版本，可以在本demo顶层目录下载`open_ad_sdk_3404.aar`
-  
-        implementation(name: 'open_ad_sdk_3404', ext: 'aar')
+        implementation(name: 'open_novel_sdk_1.0.6', ext: 'aar')
+        // 新增依赖，头条内容合作sdk 需要相同依赖。如果两个sdk都接入只需要添加一次
+        implementation ("com.volcengine:apm_insight_crash:1.3.7") {
+            exclude group: 'com.android.support'
+            exclude group: 'com.bytedance.applog'
+        }
        
+    2）需要接入穿山甲sdk，请参照adroi文档进行接入
+
     3）如果之前有添加过`AppLog`库，或已接入内容合作sdk（该sdk依赖AppLog），需要`替换`AppLog aar包为：
  
         implementation "com.bytedance.applog:RangersAppLog-Lite-cn:5.4.1-rc.0-utility"
@@ -78,8 +91,12 @@
     4）在`YouliaoNewsSdk.init(this, "appid", "apikey", "channel")`方法下面添加：
   
         YouliaoNewsSdk.initBytedanceNovel(appid, "应用名称") // appid有料这边会提供，该方法不会有网络请求，可以在application中调用
-      
-    5）如果使用`AndroidX`需要添加以下到`AndroidMenifest.xml`
+
+    5）获取小说单频道fragment
+
+        YouliaoNewsSdk.getBytedanceNovelFragment()
+
+    6）如果使用`AndroidX`需要添加以下到`AndroidMenifest.xml`
   
         <activity
             android:name="com.bytedance.novel.view.NovelReaderActivity"
@@ -100,7 +117,17 @@
                 android:value="true" />
         </activity>
 
-    6）由于小说sdk aar只提供了`armeabi-v7a`、`arm64-v8a`的so库，所以需要根据自身需要设置正确的`abiFilters`
+    7）由于小说sdk aar只提供了`armeabi-v7a`、`arm64-v8a`的so库，所以需要根据自身需要设置正确的`abiFilters`
+
+6. 接入`快手小视频sdk`：
+    1）添加sdk，可以在sdk目录下载`kssdk-all-3.3.11.aar`，如果之前有接入快手广告sdk需要`删除`原有aar包
+        
+        implementation(name: 'kssdk-all-3.3.11', ext: 'aar')
+    
+    2）在`YouliaoNewsSdk.init(this, "appid", "apikey", "channel")`方法下面添加：
+
+        YouliaoNewsSdk.initKs(appid, "应用名称") // appid有料这边会提供，该方法不会有网络请求，可以在application中调用
+
 
 ### 二、初始化及基本配置
 
