@@ -57,6 +57,8 @@
             exclude group: 'com.android.support'
             exclude group: 'com.bytedance.applog'
         }
+        // 如果使用androidx，请添加下面一行
+        implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     2）需要接入穿山甲sdk，请参照adroi文档进行接入
 
@@ -120,6 +122,7 @@
     7）由于小说sdk aar只提供了`armeabi-v7a`、`arm64-v8a`的so库，所以需要根据自身需要设置正确的`abiFilters`
 
 6. 接入`快手小视频sdk`：
+
     1）添加sdk，可以在sdk目录下载`kssdk-all-3.3.11.aar`，如果之前有接入快手广告sdk需要`删除`原有aar包
         
         implementation(name: 'kssdk-all-3.3.11', ext: 'aar')
@@ -127,7 +130,11 @@
     2）在`YouliaoNewsSdk.init(this, "appid", "apikey", "channel")`方法下面添加：
 
         YouliaoNewsSdk.initKs(appid, "应用名称") // appid有料这边会提供，该方法不会有网络请求，可以在application中调用
+    
+    3）如果使用androidX，请确保以下两个依赖不能大于1.2.5
 
+        implementation 'androidx.fragment:fragment:1.2.5'
+        implementation 'androidx.fragment:fragment-ktx:1.2.5'
 
 ### 二、初始化及基本配置
 
