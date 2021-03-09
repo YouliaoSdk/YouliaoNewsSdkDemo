@@ -66,7 +66,15 @@
  
         implementation "com.bytedance.applog:RangersAppLog-Lite-cn:5.4.1-rc.0-utility"
     
-    3）如果`AndroidMenifest.xml`中添加：
+    4）在app的build.gradle中添加
+
+        android{
+            defaultConfig{
+                manifestPlaceholders.put("APPLOG_SCHEME", "rangersapplog.xxxxxxxx".toLowerCase())
+            }
+        }
+    
+    5）如果`AndroidMenifest.xml`中添加：
 
         <provider
             android:name="com.bytedance.sdk.dp.act.DPProvider"
