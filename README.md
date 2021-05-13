@@ -3,7 +3,10 @@
 |  版本号 | 日期 | 说明 |
 | ---- | ---- | --- |
 | 1.1.5-rc01 | 2021-2-7 | 创建文档，支持穿山甲小说sdk |
-| 1.1.6-rc01 | 2021-3-4 | 支持穿山甲小说单频道，支持快手小视频|
+| 1.1.6-rc01 | 2021-3-4 | 支持穿山甲小说单频道，支持快手小视频 |
+| 1.1.8-rc06 | 2021-4-16 | 增加统计，修复bug |
+| 1.1.9-rc01 | 2021-5-13 | 适配 adroi-sdk:3.8.7，头条内容sdk:2.4.1.0，小说sdk:2.0.2 |
+| 1.2.0-rc02 | 2021-5-13 | 迁移到androidx，适配 adroi-sdk:3.8.7，头条内容sdk:2.4.1.0，小说sdk:2.0.2 |
 
 ## CHANGELOG
 - [CHANGELOG.md](./CHANGELOG.md)
@@ -36,29 +39,29 @@
 2. 在app工程的`dependencies`添加
    ```groovy
    dependencies {
-       // 增加下面依赖
-       implementation 'com.youliao.sdk:news:1.1.6-rc01'
-       // 如果使用glide4.x，增加依赖
-       implementation 'com.youliao.sdk:glide4:1.1.5'
+        // 增加下面依赖
+        implementation 'com.youliao.sdk:news:1.2.0-rc02'
+        // 如果使用glide4.x，增加依赖
+        implementation 'com.youliao.sdk:glide4:1.2.0'
+        // 如果使用coil，增加依赖
+        implementation 'com.youliao.sdk:coil:1.2.0'
    }
    ```
 
 3. 接入`adroi sdk`，并且之前没有接入过`adroi sdk`，请按照`adroi sdk`文档进行接入
 **注意**
-1.1.6-rc01版本对应的adroi sdk版本为`3.7.7`，请尽量保持一致，以免有兼容性问题
+1.1.6-rc01版本对应的adroi sdk版本为`3.8.7`，请尽量保持一致，以免有兼容性问题
 
 4. 接入`头条内容合作sdk`：
 
-    1） 添加sdk，可以在sdk目录下载`dpsdk_2.4.0.2.aar`
+    1） 添加sdk，可以在sdk目录下载`dpsdk_2.4.1.0.aar`
 
-        implementation(name: 'dpsdk_2.4.0.2', ext: 'aar')
+        implementation(name: 'dpsdk_2.4.1.0', ext: 'aar')
         // 新增依赖，穿山甲小说sdk 需要相同依赖。如果两个sdk都接入只需要添加一次
         implementation ("com.volcengine:apm_insight_crash:1.3.7") {
             exclude group: 'com.android.support'
             exclude group: 'com.bytedance.applog'
         }
-        // 如果使用androidx，请添加下面一行
-        implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     2）需要接入穿山甲sdk，请参照adroi文档进行接入
 
@@ -83,9 +86,9 @@
 
 5. 接入`穿山甲小说sdk`：
 
-    1）添加sdk，可以在sdk目录下载`open_novel_sdk_1.0.6.aar`
+    1）添加sdk，可以在sdk目录下载`open_novel_sdk_2.0.2.aar`
   
-        implementation(name: 'open_novel_sdk_1.0.6', ext: 'aar')
+        implementation(name: 'open_novel_sdk_2.0.2', ext: 'aar')
         // 新增依赖，头条内容合作sdk 需要相同依赖。如果两个sdk都接入只需要添加一次
         implementation ("com.volcengine:apm_insight_crash:1.3.7") {
             exclude group: 'com.android.support'
@@ -106,7 +109,7 @@
 
         YouliaoNewsSdk.getBytedanceNovelFragment()
 
-    6）如果使用`AndroidX`需要添加以下到`AndroidMenifest.xml`
+    6）添加以下内容到`AndroidMenifest.xml`
   
         <activity
             android:name="com.bytedance.novel.view.NovelReaderActivity"
@@ -139,7 +142,7 @@
 
         YouliaoNewsSdk.initKs(appid, "应用名称") // appid有料这边会提供，该方法不会有网络请求，可以在application中调用
     
-    3）如果使用androidX，请确保以下两个依赖不能大于1.2.5
+    3）请确保以下两个依赖不能大于1.2.5
 
         implementation 'androidx.fragment:fragment:1.2.5'
         implementation 'androidx.fragment:fragment-ktx:1.2.5'
@@ -156,9 +159,9 @@
    // 此方法不会请求网络，请放在Application中调用，appid和secret参数会由渠杰提供，channel由接入方填入
    YouliaoNewsSdk.init(this, "appid", "apikey", "channel")
    	.setShareAppId("qqappid", "wxappid"); // qqappid，wxappid
-    // 如果接入oaid，并且oaid版本为：1.0.25，可以依赖'com.youliao.sdk:msa:1.1.5'，或者自行实现OaidProvider接口
+    // 如果接入oaid，并且oaid版本为：1.0.25，可以依赖'com.youliao.sdk:msa:1.2.0'，或者自行实现OaidProvider接口
     .setOaidProvider(new MasOaidProvider(this))
-    // 可以依赖'com.youliao.sdk:amaplocation:1.1.5'，或者自行实现LocationProvider接口
+    // 可以依赖'com.youliao.sdk:amaplocation:1.2.0'，或者自行实现LocationProvider接口
     // 如果在NewsFragment.newInstance中有传入city，请不要再调用该方法
     .setLocationProvider(new AMapLocationProvider(this));
    
@@ -184,9 +187,9 @@
      // 此方法不会请求网络，请放在Application中调用，appid和secret参数会由渠杰提供，channel由接入方填入
      init(this@MyApplication, "appid", "apikey", "channel")
      setShareAppId("qqappid","wxappid")
-    // 如果接入oaid，并且oaid版本为：1.0.25，可以依赖'com.youliao.sdk:msa:1.1.5'，或者自行实现OaidProvider接口
+    // 如果接入oaid，并且oaid版本为：1.0.25，可以依赖'com.youliao.sdk:msa:1.2.0'，或者自行实现OaidProvider接口
      setOaidProvider(MasOaidProvider(this@MyApplication))
-     // 可以依赖'com.youliao.sdk:amaplocation:1.1.5'，或者自行实现LocationProvider接口，或者不需要本地频道
+     // 可以依赖'com.youliao.sdk:amaplocation:1.2.0'，或者自行实现LocationProvider接口，或者不需要本地频道
      // 如果在NewsFragment.newInstance中有传入city，请不要再调用该方法
      setLocationProvider(AMapLocationProvider(this@MyApplication))
      // 注意：此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
