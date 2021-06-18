@@ -56,6 +56,7 @@
 4. 接入`头条内容合作sdk`：
 
     1） 添加sdk
+    
         // 在allprojects的repositories中添加
         maven { url "https://artifact.bytedance.com/repository/pangle/" }
         maven { url "https://artifact.bytedance.com/repository/Volcengine/" }
@@ -70,6 +71,7 @@
     2）需要接入穿山甲sdk，请参照adroi文档进行接入
 
     3）如果之前有添加过`AppLog`库，或已接入内容合作sdk（该sdk依赖AppLog），需要`替换`AppLog包为：
+    
         implementation('com.bytedance.applog:RangersAppLog-All-cn:6.1.2') {
             exclude group:"com.volcengine.onekit" //不支持androidx的客户可自行剔除
         }
