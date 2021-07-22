@@ -7,7 +7,7 @@
 | 1.1.8-rc06 | 2021-4-16 | 增加统计，修复bug |
 | 1.1.9-rc01 | 2021-5-13 | 适配 adroi-sdk:3.8.7，头条内容sdk:2.4.1.0，小说sdk:2.0.2 |
 | 1.2.0-rc02 | 2021-5-13 | 迁移到androidx，适配 adroi-sdk:3.8.7，头条内容sdk:2.4.1.0，小说sdk:2.0.2 |
-| 1.2.1-rc01 | 2021-6-17 | 适配 adroi-sdk:3.9.7，头条内容sdk:2.7.1.2，小说sdk:3.0.1 |
+| 1.2.1-rc03 | 2021-6-17 | 适配 adroi-sdk:3.9.7/3.9.9.3，头条内容sdk:2.7.1.2，小说sdk:3.0.1 |
 
 ## CHANGELOG
 - [CHANGELOG.md](./CHANGELOG.md)
@@ -41,7 +41,7 @@
    ```groovy
    dependencies {
         // 增加下面依赖
-        implementation 'com.youliao.sdk:news:1.2.1-rc01'
+        implementation 'com.youliao.sdk:news:1.2.1-rc03'
         // 如果使用glide4.x，增加依赖
         implementation 'com.youliao.sdk:glide4:1.2.0'
         // 如果使用coil，增加依赖
@@ -51,7 +51,7 @@
 
 3. 接入`adroi sdk`，并且之前没有接入过`adroi sdk`，请按照`adroi sdk`文档进行接入
 **注意**
-1.2.1-rc01版本对应的adroi sdk版本为`3.9.7`，请尽量保持一致，以免有兼容性问题
+1.2.1-rc03版本对应的adroi sdk版本为`3.9.7`或`3.9.9.3`，请尽量保持一致，以免有兼容性问题
 
 4. 接入`头条内容合作sdk`：
 
@@ -141,9 +141,9 @@
 
 6. 接入`快手小视频sdk`：
 
-    1）添加sdk，可以在sdk目录下载`kssdk-all-3.3.11.aar`，如果之前有接入快手广告sdk需要`删除`原有aar包
+    1）添加sdk，可以在sdk目录下载`kssdk-all-3.3.19.1.aar`，如果之前有接入快手广告sdk需要`删除`原有aar包
         
-        implementation(name: 'kssdk-all-3.3.11', ext: 'aar')
+        implementation(name: 'kssdk-all-3.3.19.1', ext: 'aar')
         // 如果使用androidx，需要添加此依赖
         implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
     
