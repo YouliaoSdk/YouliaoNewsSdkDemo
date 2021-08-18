@@ -1,10 +1,9 @@
 package com.youliao.news
 
-import android.content.res.Configuration
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -62,9 +61,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration?) {
-        super.onConfigurationChanged(newConfig)
     }
 }

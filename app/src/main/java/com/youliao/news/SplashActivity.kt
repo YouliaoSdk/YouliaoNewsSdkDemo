@@ -4,11 +4,9 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
-import com.youliao.news.java.JavaMainActivity
-import com.youliao.sdk.news.YouliaoNewsSdk
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 
 class SplashActivity : AppCompatActivity() {
 
@@ -39,8 +37,7 @@ class SplashActivity : AppCompatActivity() {
         if (notGranted.isNotEmpty()) {
             ActivityCompat.requestPermissions(
                 this,
-                notGranted
-                , 100
+                notGranted, 100
             )
         } else {
             goToMain()

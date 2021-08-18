@@ -1,0 +1,28 @@
+{
+  "init": {
+    "site_id": "1234567",
+    "app_id": "12345",
+    "partner": "pangle_12345",
+    "secure_key": "xxxxxxxxxx"
+  },
+  "feed": {
+    "news_list_ad_code_id": "946125836",
+    "news_first_ad_code_id": "946125837",
+    "news_second_ad_code_id": "946125844",
+    "video_first_ad_code_id": "",
+    "video_second_ad_code_id": "946125838",
+    "related_ad_code_id": "946125845",
+    "news_draw_ad_code_id": "946125850",
+    "news_draw_native_ad_code_id": "946125851"
+  },
+  "small_video": {
+    "draw_ad_code_id": "946125846",
+    "draw_native_ad_code_id": "946125839",
+    "grid_ad_code_id": "946125848",
+    "grid_draw_ad_code_id": "946125849",
+    "grid_draw_native_ad_code_id": "946125842",
+    "video_card_ad_code_id": "946125841",
+    "video_card_draw_ad_code_id": "946125847",
+    "video_card_draw_native_ad_code_id": "946125840"
+  }
+}

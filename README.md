@@ -8,9 +8,13 @@
 | 1.1.9-rc01 | 2021-5-13 | 适配 adroi-sdk:3.8.7，头条内容sdk:2.4.1.0，小说sdk:2.0.2 |
 | 1.2.0-rc02 | 2021-5-13 | 迁移到androidx，适配 adroi-sdk:3.8.7，头条内容sdk:2.4.1.0，小说sdk:2.0.2 |
 | 1.2.1-rc03 | 2021-6-17 | 适配 adroi-sdk:3.9.7/3.9.9.3，头条内容sdk:2.7.1.2，小说sdk:3.0.1 |
+| 1.2.2-rc01 | 2021-8-17 | 适配 adroi-sdk:10.0.0.1，头条内容sdk和小说合并 sdk版本号: 1.0.0.0 |
 
 ## CHANGELOG
 - [CHANGELOG.md](./CHANGELOG.md)
+
+## Demo说明
+由于各第三方sdk都需要验证包名以及签名，demo运行可能会有问题，demo只提供用于接入参考
 
 ## SDK接入前说明
 
@@ -41,7 +45,7 @@
    ```groovy
    dependencies {
         // 增加下面依赖
-        implementation 'com.youliao.sdk:news:1.2.1-rc03'
+        implementation 'com.youliao.sdk:news:1.2.2-rc01'
         // 如果使用glide4.x，增加依赖
         implementation 'com.youliao.sdk:glide4:1.2.0'
         // 如果使用coil，增加依赖
@@ -51,31 +55,29 @@
 
 3. 接入`adroi sdk`，并且之前没有接入过`adroi sdk`，请按照`adroi sdk`文档进行接入
 **注意**
-1.2.1-rc03版本对应的adroi sdk版本为`3.9.7`或`3.9.9.3`，请尽量保持一致，以免有兼容性问题
+`1.2.2-rc01`版本对应的adroi sdk版本为`10.0.0.1`，请尽量保持一致，以免有兼容性问题
 
-4. 接入`头条内容合作sdk`：
+4. 接入`头条短视频sdk`：
 
     1） 添加sdk
     
-        // 在allprojects的repositories中添加
+        // 在allprojects的repositories中添加，如果需要同时接入小说，只需要添加一次
         maven { url "https://artifact.bytedance.com/repository/pangle/" }
         maven { url "https://artifact.bytedance.com/repository/Volcengine/" }
 
-        implementation 'com.pangle.cn:dpsdk:2.7.1.2'
-        // 新增依赖，穿山甲小说sdk 需要相同依赖。如果两个sdk都接入只需要添加一次
-        implementation("com.volcengine:apm_insight_crash:1.3.7") {
-            exclude group: 'com.android.support'
-            exclude group: 'com.bytedance.applog'
+        implementation ('com.pangle.cn:pangrowth-sdk:1.0.0.0'){
+            exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
+            exclude group: 'com.pangle.cn', module: 'pangrowth-novel-sdk' // 如果需要同时接入小说，需要删除本行
+            exclude group: 'com.pangle.cn', module: 'pangrowth-game-sdk'
+            exclude group: 'com.pangle.cn', module: 'pangrowth-luckycat-sdk'
         }
 
     2）需要接入穿山甲sdk，请参照adroi文档进行接入
 
-    3）如果之前有添加过`AppLog`库，或已接入内容合作sdk（该sdk依赖AppLog），需要`替换`AppLog包为：
-    
-        implementation('com.bytedance.applog:RangersAppLog-All-cn:6.1.2') {
-            exclude group:"com.volcengine.onekit" //不支持androidx的客户可自行剔除
-        }
-    
+    3）初始化，为了合规请在用户同意协议之后调用：
+
+        initBytedanceDp("配置json文件名", false) // 该配置文件请从穿山甲后台下载，并放到assets目录下
+
     4）在app的build.gradle中添加
 
         android{
@@ -91,34 +93,32 @@
             android:authorities="${applicationId}.BDDPProvider"
             android:exported="false" />
 
-5. 接入`穿山甲小说sdk`：
+5. 接入`头条小说sdk`：
 
-    1）添加sdk，可以在sdk目录下载`open_novel_sdk_3.0.1.aar`
+    1）添加sdk
   
-        implementation(name: 'open_novel_sdk_3.0.1', ext: 'aar')
-        // 新增依赖，头条内容合作sdk 需要相同依赖。如果两个sdk都接入只需要添加一次
-        implementation ("com.volcengine:apm_insight_crash:1.3.7") {
-            exclude group: 'com.android.support'
-            exclude group: 'com.bytedance.applog'
+        // 在allprojects的repositories中添加，如果需要同时接入短视频（含图文），只需要添加一次
+        maven { url "https://artifact.bytedance.com/repository/pangle/" }
+        maven { url "https://artifact.bytedance.com/repository/Volcengine/" }
+
+        implementation ('com.pangle.cn:pangrowth-sdk:1.0.0.0'){
+            exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
+            exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk' // 如果需要同时接入短视频（含图文），需要删除本行
+            exclude group: 'com.pangle.cn', module: 'pangrowth-game-sdk'
+            exclude group: 'com.pangle.cn', module: 'pangrowth-luckycat-sdk'
         }
        
     2）需要接入穿山甲sdk，请参照adroi文档进行接入
-
-    3）如果之前有添加过`AppLog`库，或已接入内容合作sdk（该sdk依赖AppLog），需要`替换`AppLog包为：
- 
-         implementation('com.bytedance.applog:RangersAppLog-All-cn:6.1.2') {
-            exclude group:"com.volcengine.onekit" //不支持androidx的客户可自行剔除
-        }
       
-    4）在`YouliaoNewsSdk.init(this, "appid", "apikey", "channel")`方法下面添加：
+    3）初始化，为了合规请在用户同意协议之后调用：
   
-        YouliaoNewsSdk.initBytedanceNovel(appid, "应用名称") // appid有料这边会提供，该方法不会有网络请求，可以在application中调用
+        YouliaoNewsSdk.initBytedanceNovel(appid, "应用名称", "preAdCodeId", "midAdCodeId", "excitingAdCodeId", "bannerAdCodeId") // 以上参数如何填写请询问商务
 
-    5）获取小说单频道fragment
+    4）获取小说单频道fragment
 
         YouliaoNewsSdk.getBytedanceNovelFragment()
 
-    6）添加以下内容到`AndroidMenifest.xml`
+    5）添加以下内容到`AndroidMenifest.xml`
   
         <activity
             android:name="com.bytedance.novel.view.NovelReaderActivity"
@@ -158,6 +158,11 @@
         implementation 'androidx.fragment:fragment:1.2.5'
         implementation 'androidx.fragment:fragment-ktx:1.2.5'
 
+        如果需要使用fragmnet:1.2.5以上的版本，则需要调用以下代码：
+            FragmentManager.enableNewStateManager(false)
+
+
+
 ### 二、初始化及基本配置
 
 1. 在Application中的`onCreate`添加
@@ -182,11 +187,8 @@
    // 如果在NewsFragment.newInstance中有传入city，请不要再调用该方法
    YouliaoNewsSdk.requestLocation();
    
-   // 此方法用于初始化adroi sdk，如果已经接入过adroi sdk或不需要adroi广告，请忽略
-   YouliaoNewsSdk.initAdroi("adroi-appid", "ADroi广告demo")
-
-    // 此方法用于初始化穿山甲小视频sdk，如果接入穿山甲小视频sdk必须调用此方法，参数有料会提供
-    YouliaoNewsSdk.initBytedanceDp("appId", "secureKey", "partner", "appLogId");
+   // 此方法用于初始化adroi sdk，如果已经接入过adroi sdk或不需要adroi广告，请忽略；为了合规请在用户同意协议之后调用
+   YouliaoNewsSdk.initAdroi("adroi-appid", "ADroi广告demo", false);
    ```
 
    ```kotlin
@@ -209,11 +211,8 @@
      // 如果在NewsFragment.newInstance中有传入city，请不要再调用该方法
      requestLocation()
      
-     // 此方法用于初始化adroi sdk，如果已经接入过adroi sdk或不需要adroi广告，请忽略
+     // 此方法用于初始化adroi sdk，如果已经接入过adroi sdk或不需要adroi广告，请忽略；为了合规请在用户同意协议之后调用
      initAdroi("adroi-appid", "ADroi广告demo")
-
-     // 此方法用于初始化穿山甲小视频sdk，如果接入穿山甲小视频sdk必须调用此方法，参数有料会提供
-     initBytedanceDp("appId", "secureKey", "partner", "appLogId")
    }
    ```
 
