@@ -9,6 +9,7 @@
 | 1.2.0-rc02 | 2021-5-13 | 迁移到androidx，适配 adroi-sdk:3.8.7，头条内容sdk:2.4.1.0，小说sdk:2.0.2 |
 | 1.2.1-rc03 | 2021-6-17 | 适配 adroi-sdk:3.9.7/3.9.9.3，头条内容sdk:2.7.1.2，小说sdk:3.0.1 |
 | 1.2.2-rc01 | 2021-8-17 | 适配 adroi-sdk:10.0.0.1，头条内容sdk和小说合并 sdk版本号: 1.0.0.0 |
+| 1.2.3-rc01 | 2021-9-6 | 适配 adroi-sdk:10.0.0.3，头条内容sdk和小说合并 sdk版本号: 1.2.0.0 |
 
 ## CHANGELOG
 - [CHANGELOG.md](./CHANGELOG.md)
@@ -45,7 +46,7 @@
    ```groovy
    dependencies {
         // 增加下面依赖
-        implementation 'com.youliao.sdk:news:1.2.2-rc01'
+        implementation 'com.youliao.sdk:news:1.2.3-rc01'
         // 如果使用glide4.x，增加依赖
         implementation 'com.youliao.sdk:glide4:1.2.0'
         // 如果使用coil，增加依赖
@@ -55,7 +56,7 @@
 
 3. 接入`adroi sdk`，并且之前没有接入过`adroi sdk`，请按照`adroi sdk`文档进行接入
 **注意**
-`1.2.2-rc01`版本对应的adroi sdk版本为`10.0.0.1`，请尽量保持一致，以免有兼容性问题
+`1.2.3-rc01`版本对应的adroi sdk版本为`10.0.0.3`，请尽量保持一致，以免有兼容性问题
 
 4. 接入`头条短视频sdk`：
 
@@ -65,7 +66,9 @@
         maven { url "https://artifact.bytedance.com/repository/pangle/" }
         maven { url "https://artifact.bytedance.com/repository/Volcengine/" }
 
-        implementation ('com.pangle.cn:pangrowth-sdk:1.0.0.0'){
+        // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
+        implementation 'com.pangle.cn:ads-sdk:3.9.0.2'
+        implementation ('com.pangle.cn:pangrowth-sdk:1.2.0.0'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
             exclude group: 'com.pangle.cn', module: 'pangrowth-novel-sdk' // 如果需要同时接入小说，需要删除本行
             exclude group: 'com.pangle.cn', module: 'pangrowth-game-sdk'
@@ -101,7 +104,9 @@
         maven { url "https://artifact.bytedance.com/repository/pangle/" }
         maven { url "https://artifact.bytedance.com/repository/Volcengine/" }
 
-        implementation ('com.pangle.cn:pangrowth-sdk:1.0.0.0'){
+        // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
+        implementation 'com.pangle.cn:ads-sdk:3.9.0.2'
+        implementation ('com.pangle.cn:pangrowth-sdk:1.2.0.0'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk' // 如果需要同时接入短视频（含图文），需要删除本行
             exclude group: 'com.pangle.cn', module: 'pangrowth-game-sdk'
@@ -112,7 +117,7 @@
       
     3）初始化，为了合规请在用户同意协议之后调用：
   
-        YouliaoNewsSdk.initBytedanceNovel(appid, "应用名称", "preAdCodeId", "midAdCodeId", "excitingAdCodeId", "bannerAdCodeId") // 以上参数如何填写请询问商务
+        YouliaoNewsSdk.initBytedanceNovel("应用名称", "配置json文件名", false) // 该配置文件请从穿山甲后台下载，并放到assets目录下
 
     4）获取小说单频道fragment
 
@@ -139,8 +144,6 @@
                 android:value="true" />
         </activity>
 
-    7）由于小说sdk aar只提供了`armeabi`、`armeabi-v7a`、`arm64-v8a`的so库，所以需要根据自身需要设置正确的`abiFilters`
-
 6. 接入`快手小视频sdk`：
 
     1）添加sdk，可以在sdk目录下载`kssdk-all-3.3.19.1.aar`，如果之前有接入快手广告sdk需要`删除`原有aar包
@@ -151,9 +154,9 @@
     
     2）在`YouliaoNewsSdk.init(this, "appid", "apikey", "channel")`方法下面添加：
 
-        YouliaoNewsSdk.initKs(appid, "应用名称") // appid有料这边会提供，该方法不会有网络请求，可以在application中调用
+        YouliaoNewsSdk.initKs(appid, "应用名称") // appid有料这边会提供
     
-    3）请确保以下两个依赖不能大于1.2.5
+    3）请确保以下两个依赖不能大于1.2.5，或者查看第四点
 
         implementation 'androidx.fragment:fragment:1.2.5'
         implementation 'androidx.fragment:fragment-ktx:1.2.5'
@@ -161,7 +164,12 @@
         如果需要使用fragmnet:1.2.5以上的版本，则需要调用以下代码：
             FragmentManager.enableNewStateManager(false)
 
+    4) 如果不能满足第三点，则需要调用下面的方法
 
+        FragmentManager.enableNewStateManager(false)
+
+    5) 新增快手合规开关
+        YouliaoNewsSdk.updateKsRecommendation(true) // 默认true。true:推荐 false:合规
 
 ### 二、初始化及基本配置
 

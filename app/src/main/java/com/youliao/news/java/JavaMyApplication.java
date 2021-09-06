@@ -36,15 +36,7 @@ public class JavaMyApplication extends MultiDexApplication {
             // 此方法用于初始化头条小视频sdk，为了合规请在用户同意协议后调用
             YouliaoNewsSdk.initBytedanceDp("SDK_Setting_xxxxxxx.json", false);
             // 此方法用于初始化头条小说sdk，为了合规请在用户同意协议后调用
-//            YouliaoNewsSdk.initBytedanceNovel(
-//                    "appId",
-//                    "appName",
-//                    "preAdCodeId",
-//                    "midAdCodeId",
-//                    "excitingAdCodeId",
-//                    "bannerAdCodeId",
-//                    ""
-//            );
+//            YouliaoNewsSdk.initBytedanceNovel("appName", "SDK_Setting_xxxxxxx.json", false);
         }
     }
 }

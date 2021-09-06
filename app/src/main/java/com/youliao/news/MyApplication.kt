@@ -50,14 +50,7 @@ class MyApplication : MultiDexApplication() {
                 // 此方法用于初始化头条小视频sdk，为了合规请在用户同意协议后调用
                 initBytedanceDp("SDK_Setting_xxxxxxx.json", false)
                 // 此方法用于初始化头条小说sdk，为了合规请在用户同意协议后调用
-//                initBytedanceNovel(
-//                    "appId",
-//                    "appName",
-//                    "preAdCodeId",
-//                    "midAdCodeId",
-//                    "excitingAdCodeId",
-//                    "bannerAdCodeId"
-//                )
+//                initBytedanceNovel("appName", "SDK_Setting_xxxxxxx.json", false)
             }
 
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)

@@ -70,21 +70,21 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
 
     def youliao_version = "1.2.0"
-    implementation "com.youliao.sdk:news:1.2.2-rc01"
+    implementation "com.youliao.sdk:news:1.2.3-rc01"
     implementation "com.youliao.sdk:amaplocation:$youliao_version"
 //    implementation "com.youliao.sdk:msa:$youliao_version"
     implementation "com.youliao.sdk:glide4:$youliao_version"
 
     // adroi
-    implementation(name: 'adroi.poly.sdk-10.0.0.1', ext: 'aar')
+    implementation(name: 'adroi.poly.sdk-10.0.0.3', ext: 'aar')
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.15'
-    implementation(name: 'GDTSDK.unionNormal.4.371.1241', ext: 'aar')
+    implementation(name: 'GDTSDK.unionNormal.4.400.1270', ext: 'aar')
     compileOnly files('libs/tbs_sdk_thirdapp_v4.3.0.1020_43633_compile_only.jar')
     implementation(name: 'kssdk-all-3.3.19.1', ext: 'aar')
     implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
-    implementation(name: 'Baidu_MobAds_SDK-release_v9.101', ext: 'aar')
-    implementation(name: 'open_ad_sdk_3708', ext: 'aar')
-    implementation('com.pangle.cn:pangrowth-sdk:1.0.0.0') {
+    implementation(name: 'Baidu_MobAds_SDK-release_v9.15', ext: 'aar')
+    implementation 'com.pangle.cn:ads-sdk:3.9.0.2'
+    implementation('com.pangle.cn:pangrowth-sdk:1.2.0.0') {
         exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
         exclude group: 'com.pangle.cn', module: 'pangrowth-game-sdk'
         exclude group: 'com.pangle.cn', module: 'pangrowth-luckycat-sdk'

@@ -1,5 +1,12 @@
 # 有料信息流sdk 变动日志
 
+## 1.2.3
+1. 依赖的adroi-sdk版本更新为：10.0.0.3，请注意要匹配
+2. 依赖的内容合作-sdk版本更新为：1.2.0.0
+3. 新增快手合规开关 YouliaoNewsSdk.updateKsRecommendation(boolean)
+
+Breaking Changes:
+1. 小说sdk初始化 改为传入配置文件名称。详见`头条小说sdk`接入
 ## 1.2.2
 1. 依赖的adroi-sdk版本更新为：10.0.0.1，请注意要匹配
 2. 依赖的内容合作-sdk版本更新为：1.0.0.0
