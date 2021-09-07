@@ -79,7 +79,7 @@
 
     3）初始化，为了合规请在用户同意协议之后调用：
 
-        initBytedanceDp("配置json文件名", false) // 该配置文件请从穿山甲后台下载，并放到assets目录下
+        initBytedanceDp("配置json文件名") // 该配置文件请从穿山甲后台下载，并放到assets目录下
 
     4）在app的build.gradle中添加
 
@@ -117,7 +117,7 @@
       
     3）初始化，为了合规请在用户同意协议之后调用：
   
-        YouliaoNewsSdk.initBytedanceNovel("应用名称", "配置json文件名", false) // 该配置文件请从穿山甲后台下载，并放到assets目录下
+        YouliaoNewsSdk.initBytedanceNovel("应用名称", "配置json文件名") // 该配置文件请从穿山甲后台下载，并放到assets目录下
 
     4）获取小说单频道fragment
 
@@ -152,23 +152,15 @@
         // 如果使用androidx，需要添加此依赖
         implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
     
-    2）在`YouliaoNewsSdk.init(this, "appid", "apikey", "channel")`方法下面添加：
+    2）初始化，为了合规请在用户同意协议之后调用：
 
         YouliaoNewsSdk.initKs(appid, "应用名称") // appid有料这边会提供
-    
-    3）请确保以下两个依赖不能大于1.2.5，或者查看第四点
 
-        implementation 'androidx.fragment:fragment:1.2.5'
-        implementation 'androidx.fragment:fragment-ktx:1.2.5'
-
-        如果需要使用fragmnet:1.2.5以上的版本，则需要调用以下代码：
-            FragmentManager.enableNewStateManager(false)
-
-    4) 如果不能满足第三点，则需要调用下面的方法
+    3) 需要调用下面的方法
 
         FragmentManager.enableNewStateManager(false)
 
-    5) 新增快手合规开关
+    4) 新增快手合规开关
         YouliaoNewsSdk.updateKsRecommendation(true) // 默认true。true:推荐 false:合规
 
 ### 二、初始化及基本配置
