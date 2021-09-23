@@ -10,6 +10,7 @@
 | 1.2.1-rc03 | 2021-6-17 | 适配 adroi-sdk:3.9.7/3.9.9.3，头条内容sdk:2.7.1.2，小说sdk:3.0.1 |
 | 1.2.2-rc01 | 2021-8-17 | 适配 adroi-sdk:10.0.0.1，头条内容sdk和小说合并 sdk版本号: 1.0.0.0 |
 | 1.2.3-rc01 | 2021-9-6 | 适配 adroi-sdk:10.0.0.3，头条内容sdk和小说合并 sdk版本号: 1.2.0.0 |
+| 1.2.4-rc01 | 2021-9-23 | 适配 adroi-sdk:10.0.0.3，头条内容sdk和小说合并 sdk版本号: 1.3.0.0 |
 
 ## CHANGELOG
 - [CHANGELOG.md](./CHANGELOG.md)
@@ -46,7 +47,7 @@
    ```groovy
    dependencies {
         // 增加下面依赖
-        implementation 'com.youliao.sdk:news:1.2.3-rc01'
+        implementation 'com.youliao.sdk:news:1.2.4-rc01'
         // 如果使用glide4.x，增加依赖
         implementation 'com.youliao.sdk:glide4:1.2.0'
         // 如果使用coil，增加依赖
@@ -56,7 +57,7 @@
 
 3. 接入`adroi sdk`，并且之前没有接入过`adroi sdk`，请按照`adroi sdk`文档进行接入
 **注意**
-`1.2.3-rc01`版本对应的adroi sdk版本为`10.0.0.3`，请尽量保持一致，以免有兼容性问题
+`1.2.4-rc01`版本对应的adroi sdk版本为`10.0.0.3`，请尽量保持一致，以免有兼容性问题
 
 4. 接入`头条短视频sdk`：
 
@@ -68,7 +69,7 @@
 
         // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
         implementation 'com.pangle.cn:ads-sdk:3.9.0.2'
-        implementation ('com.pangle.cn:pangrowth-sdk:1.2.0.0'){
+        implementation ('com.pangle.cn:pangrowth-sdk:1.3.0.0'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
             exclude group: 'com.pangle.cn', module: 'pangrowth-novel-sdk' // 如果需要同时接入小说，需要删除本行
             exclude group: 'com.pangle.cn', module: 'pangrowth-game-sdk'
@@ -106,7 +107,7 @@
 
         // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
         implementation 'com.pangle.cn:ads-sdk:3.9.0.2'
-        implementation ('com.pangle.cn:pangrowth-sdk:1.2.0.0'){
+        implementation ('com.pangle.cn:pangrowth-sdk:1.3.0.0'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk' // 如果需要同时接入短视频（含图文），需要删除本行
             exclude group: 'com.pangle.cn', module: 'pangrowth-game-sdk'
@@ -144,11 +145,14 @@
                 android:value="true" />
         </activity>
 
+    6) 新增小说合规开关
+        YouliaoNewsSdk.updateNovelRecommendation(false) // 默认true。true:推荐 false:合规
+
 6. 接入`快手小视频sdk`：
 
-    1）添加sdk，可以在sdk目录下载`kssdk-all-3.3.19.1.aar`，如果之前有接入快手广告sdk需要`删除`原有aar包
+    1）添加sdk，可以在`sdk`目录下载`kssdk-all-3.3.23.aar`，如果之前有接入快手广告sdk需要`删除`原有aar包
         
-        implementation(name: 'kssdk-all-3.3.19.1', ext: 'aar')
+        implementation(name: 'kssdk-all-3.3.23', ext: 'aar')
         // 如果使用androidx，需要添加此依赖
         implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
     
@@ -161,7 +165,7 @@
         FragmentManager.enableNewStateManager(false)
 
     4) 新增快手合规开关
-        YouliaoNewsSdk.updateKsRecommendation(true) // 默认true。true:推荐 false:合规
+        YouliaoNewsSdk.updateKsRecommendation(false) // 默认true。true:推荐 false:合规
 
 ### 二、初始化及基本配置
 
