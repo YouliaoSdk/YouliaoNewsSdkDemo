@@ -11,6 +11,7 @@
 | 1.2.2-rc01 | 2021-8-17 | 适配 adroi-sdk:10.0.0.1，头条内容sdk和小说合并 sdk版本号: 1.0.0.0 |
 | 1.2.3-rc01 | 2021-9-6 | 适配 adroi-sdk:10.0.0.3，头条内容sdk和小说合并 sdk版本号: 1.2.0.0 |
 | 1.2.4-rc01 | 2021-9-23 | 适配 adroi-sdk:10.0.0.3，头条内容sdk和小说合并 sdk版本号: 1.3.0.0 |
+| 1.2.5-rc01 | 2022-2-16 | 适配 adroi-sdk:10.0.0.19，头条内容合作-sdk版本号: 1.7.0.0 |
 
 ## CHANGELOG
 - [CHANGELOG.md](./CHANGELOG.md)
@@ -47,7 +48,7 @@
    ```groovy
    dependencies {
         // 增加下面依赖
-        implementation 'com.youliao.sdk:news:1.2.4-rc01'
+        implementation 'com.youliao.sdk:news:1.2.5-rc01'
         // 如果使用glide4.x，增加依赖
         implementation 'com.youliao.sdk:glide4:1.2.0'
         // 如果使用coil，增加依赖
@@ -57,7 +58,7 @@
 
 3. 接入`adroi sdk`，并且之前没有接入过`adroi sdk`，请按照`adroi sdk`文档进行接入
 **注意**
-`1.2.4-rc01`版本对应的adroi sdk版本为`10.0.0.3`，请尽量保持一致，以免有兼容性问题
+`1.2.5-rc01`版本对应的adroi sdk版本为`10.0.0.19`，请尽量保持一致，以免有兼容性问题
 
 4. 接入`头条短视频sdk`：
 
@@ -68,8 +69,8 @@
         maven { url "https://artifact.bytedance.com/repository/Volcengine/" }
 
         // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
-        implementation 'com.pangle.cn:ads-sdk:3.9.0.2'
-        implementation ('com.pangle.cn:pangrowth-sdk:1.3.0.0'){
+        implementation 'com.pangle.cn:ads-sdk-pro:4.2.5.2'
+        implementation ('com.pangle.cn:pangrowth-sdk:1.7.0.0'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
             exclude group: 'com.pangle.cn', module: 'pangrowth-novel-sdk' // 如果需要同时接入小说，需要删除本行
             exclude group: 'com.pangle.cn', module: 'pangrowth-game-sdk'
@@ -106,8 +107,8 @@
         maven { url "https://artifact.bytedance.com/repository/Volcengine/" }
 
         // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
-        implementation 'com.pangle.cn:ads-sdk:3.9.0.2'
-        implementation ('com.pangle.cn:pangrowth-sdk:1.3.0.0'){
+        implementation 'com.pangle.cn:ads-sdk-pro:4.2.5.2'
+        implementation ('com.pangle.cn:pangrowth-sdk:1.7.0.0'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk' // 如果需要同时接入短视频（含图文），需要删除本行
             exclude group: 'com.pangle.cn', module: 'pangrowth-game-sdk'
@@ -150,9 +151,9 @@
 
 6. 接入`快手小视频sdk`：
 
-    1）添加sdk，可以在`sdk`目录下载`kssdk-all-3.3.23.aar`，如果之前有接入快手广告sdk需要`删除`原有aar包
+    1）添加sdk，可以在`sdk`目录下载`kssdk-all-3.3.24.6.aar`，如果之前有接入快手广告sdk需要`删除`原有aar包
         
-        implementation(name: 'kssdk-all-3.3.23', ext: 'aar')
+        implementation(name: 'kssdk-all-3.3.24.6.aar', ext: 'aar')
         // 如果使用androidx，需要添加此依赖
         implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
     
@@ -176,8 +177,8 @@
    // *重要*,请添加下面这行
    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
    // sdk方法
-   // 此方法不会请求网络，请放在Application中调用，appid和secret参数会由渠杰提供，channel由接入方填入
-   YouliaoNewsSdk.init(this, "appid", "apikey", "channel")
+   // 此方法不会请求网络，请放在Application中调用，appid和secret参数会由渠杰提供，channel由接入方填入，json配置文件渠杰运营会提供，并放到assets目录下
+   YouliaoNewsSdk.init(this, "appid", "apikey", "channel", "配置json文件名")
    	.setShareAppId("qqappid", "wxappid"); // qqappid，wxappid
     // 如果接入oaid，并且oaid版本为：1.0.25，可以依赖'com.youliao.sdk:msa:1.2.0'，或者自行实现OaidProvider接口
     .setOaidProvider(new MasOaidProvider(this))
@@ -201,8 +202,8 @@
    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
    // sdk方法
    YouliaoNewsSdk.apply {
-     // 此方法不会请求网络，请放在Application中调用，appid和secret参数会由渠杰提供，channel由接入方填入
-     init(this@MyApplication, "appid", "apikey", "channel")
+     // 此方法不会请求网络，请放在Application中调用，appid和secret参数会由渠杰提供，channel由接入方填入，json配置文件渠杰运营会提供，并放到assets目录下
+     init(this@MyApplication, "appid", "apikey", "channel", "配置json文件名")
      setShareAppId("qqappid","wxappid")
     // 如果接入oaid，并且oaid版本为：1.0.25，可以依赖'com.youliao.sdk:msa:1.2.0'，或者自行实现OaidProvider接口
      setOaidProvider(MasOaidProvider(this@MyApplication))
