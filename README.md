@@ -69,7 +69,7 @@
         maven { url "https://artifact.bytedance.com/repository/Volcengine/" }
 
         // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
-        implementation(name: 'open_ad_sdk_4.0.1.9', ext: 'aar')
+        implementation(name: 'open_ad_sdk_4.1.0.5', ext: 'aar')
         implementation ('com.pangle.cn:pangrowth-sdk:1.7.0.0'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
             exclude group: 'com.pangle.cn', module: 'pangrowth-novel-sdk' // 如果需要同时接入小说，需要删除本行
@@ -107,7 +107,7 @@
         maven { url "https://artifact.bytedance.com/repository/Volcengine/" }
 
         // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
-        implementation(name: 'open_ad_sdk_4.0.1.9', ext: 'aar')
+        implementation(name: 'open_ad_sdk_4.1.0.5', ext: 'aar')
         implementation ('com.pangle.cn:pangrowth-sdk:1.7.0.0'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk' // 如果需要同时接入短视频（含图文），需要删除本行
