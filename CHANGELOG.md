@@ -1,9 +1,27 @@
 # 有料信息流sdk 变动日志
 
-## 下一版本更新预告
-下一个版本由于adroi-sdk和头条内容sdk会有比较大的改动，所以到时信息流也有会较大改动，不排除会破坏api兼容性！预期会有以下更新：
-1. adroi-sdk会新增广告比价以及广告缓存功能等
-2. 头条内容sdk会新增青少年模式等
+## 1.2.7
+1. 依赖的adroi-sdk版本为：10.0.0.31，请注意要匹配
+2. 依赖的内容合作-sdk版本更新为：2.4.0.0
+
+## 1.2.6
+1. 依赖的adroi-sdk版本为：10.0.0.23，请注意要匹配
+2. 依赖的内容合作-sdk版本更新为：2.2.0.1（Application的Module中添加命令依赖gradle脚本，详见文档）
+3. 依赖的穿山甲广告-sdk版本更新为：4.3.0.8
+4. 由于头条内容sdk的更新，NewsFragment实例方法中去除isScrollTop()方法  
+5. 新增支持百度-sdk信息流(依赖为adroi提供的百度广告-sdk)
+6. 新增青少年模式开关 YouliaoNewsSdk.setBytedanceTeenagerMode(boolean)
+7. 新增头条合规开关 YouliaoNewsSdk.updateBytedanceDpRecommendation(boolean)
+
+Breaking Changes:
+1. isScrollTop()由于头条sdk的变动不再能提供正确的值，请不要再使用
+
+## 1.2.5
+1. 依赖的adroi-sdk版本为：10.0.0.17，请注意要匹配
+2. 依赖的内容合作-sdk版本更新为：1.7.0.0
+3. 依赖的快手小视频版本更新为：kssdk-all-3.3.24.6.aar
+4. 新增默认配置功能（运营会给到配置文件，放到assets中，初始化时传入名称）
+5. 初始化参数增加配置文件名称
 ## 1.2.5
 1. 依赖的adroi-sdk版本为：10.0.0.17，请注意要匹配
 2. 依赖的内容合作-sdk版本更新为：1.7.0.0
