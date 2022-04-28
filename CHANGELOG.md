@@ -13,9 +13,6 @@
 6. 新增青少年模式开关 YouliaoNewsSdk.setBytedanceTeenagerMode(boolean)
 7. 新增头条合规开关 YouliaoNewsSdk.updateBytedanceDpRecommendation(boolean)
 
-Breaking Changes:
-1. isScrollTop()由于头条sdk的变动不再能提供正确的值，请不要再使用
-
 ## 1.2.5
 1. 依赖的adroi-sdk版本为：10.0.0.17，请注意要匹配
 2. 依赖的内容合作-sdk版本更新为：1.7.0.0
