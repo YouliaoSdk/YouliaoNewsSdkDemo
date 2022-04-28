@@ -13,7 +13,7 @@
 | 1.2.4-rc01 | 2021-9-23 | 适配 adroi-sdk:10.0.0.3，头条内容sdk和小说合并 sdk版本号: 1.3.0.0 |
 | 1.2.5-rc02 | 2022-2-18 | 适配 adroi-sdk:10.0.0.17，头条内容合作-sdk版本号: 1.7.0.0 |
 | 1.2.6-rc01 | 2022-3-28 | 适配 adroi-sdk:10.0.0.23，头条内容合作-sdk版本号: 2.2.0.0 |
-| 1.2.7-beta01 | 2022-4-28 | 适配 adroi-sdk:10.0.0.31，头条内容合作-sdk版本号: 2.4.0.0 |
+| 1.2.7-beta03 | 2022-4-28 | 适配 adroi-sdk:10.0.0.29.2，头条内容合作-sdk版本号: 2.4.0.0 |
 
 ## CHANGELOG
 - [CHANGELOG.md](./CHANGELOG.md)
@@ -50,7 +50,7 @@
    ```groovy
    dependencies {
         // 增加下面依赖
-        implementation 'com.youliao.sdk:news:1.2.7-beta01'
+        implementation 'com.youliao.sdk:news:1.2.7-beta03'
         // 如果使用glide4.x，增加依赖
         implementation 'com.youliao.sdk:glide4:1.2.0'
         // 如果使用coil，增加依赖
@@ -60,7 +60,7 @@
 
 3. 接入`adroi sdk`，并且之前没有接入过`adroi sdk`，请按照`adroi sdk`文档进行接入
 **注意**
-`1.2.7-beta01`版本对应的adroi sdk版本为`10.0.0.31`，请尽量保持一致，以免有兼容性问题
+`1.2.7-beta03`版本对应的adroi sdk版本为`10.0.0.29.2`，请尽量保持一致，以免有兼容性问题
 
 4. 接入`头条短视频sdk`：
 
@@ -72,7 +72,7 @@
         maven { url 'https://artifact.bytedance.com/repository/AwemeOpenSDK' }
 
         // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
-        implementation(name: 'open_ad_sdk_4.4.0.9', ext: 'aar')
+        implementation(name: 'open_ad_sdk_4.3.0.8', ext: 'aar')
         implementation ('com.pangle.cn:pangrowth-sdk:2.4.0.0'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
             exclude group: 'com.pangle.cn', module: 'pangrowth-novel-sdk' // 如果需要同时接入小说，需要删除本行
@@ -114,7 +114,7 @@
         maven { url 'https://artifact.bytedance.com/repository/AwemeOpenSDK' }
 
         // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
-        implementation(name: 'open_ad_sdk_4.4.0.9', ext: 'aar')
+        implementation(name: 'open_ad_sdk_4.3.0.8', ext: 'aar')
         implementation ('com.pangle.cn:pangrowth-sdk:2.4.0.0'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk' // 如果需要同时接入短视频（含图文），需要删除本行
