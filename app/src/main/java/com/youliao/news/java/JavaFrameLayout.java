@@ -1,9 +1,11 @@
 package com.youliao.news.java;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.MotionEventCompat;
+
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
@@ -78,6 +80,7 @@ public class JavaFrameLayout extends FrameLayout {
     }
 
     boolean isScrollTop() {
-        return mFragment.isScrollTop();
+        //return mFragment.isScrollTop();
+        return false;
     }
 }

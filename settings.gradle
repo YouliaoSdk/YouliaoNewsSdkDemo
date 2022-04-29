@@ -1,2 +1,17 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+        maven { url 'https://api.youliaokk.com:21380/repository/qj-feeds-sdk/' }
+        maven { url "https://artifact.bytedance.com/repository/pangle/" }
+        maven { url "https://artifact.bytedance.com/repository/Volcengine/" }
+        maven { url 'https://artifact.bytedance.com/repository/AwemeOpenSDK' }
+        flatDir {
+            dirs 'app/libs'
+        }
+    }
+}
 rootProject.name='YouliaoNewsSdkDemo'
 include ':app'
