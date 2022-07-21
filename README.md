@@ -15,6 +15,7 @@
 | 1.2.6-rc01 | 2022-3-28 | 适配 adroi-sdk:10.0.0.23，头条内容合作-sdk版本号: 2.2.0.0 |
 | 1.2.7-beta03 | 2022-4-28 | 适配 adroi-sdk:10.0.0.29.2，头条内容合作-sdk版本号: 2.4.0.0 |
 | 1.2.8-beta01 | 2022-5-28 | 适配 adroi-sdk:10.0.0.33，头条内容合作-sdk版本号: 2.5.0.0 |
+| 1.2.9-beta03 | 2022-7-21 | 适配 adroi-sdk:10.0.0.39，头条内容合作-sdk版本号: 2.5.0.0 |
 
 ## CHANGELOG
 - [CHANGELOG.md](./CHANGELOG.md)
@@ -51,17 +52,17 @@
    ```groovy
    dependencies {
         // 增加下面依赖
-        implementation 'com.youliao.sdk:news:1.2.8-beta01'
+        implementation 'com.youliao.sdk:news:1.2.9-beta03'
         // 如果使用glide4.x，增加依赖
-        implementation 'com.youliao.sdk:glide4:1.2.0'
+        implementation 'com.youliao.sdk:glide4:1.2.0-rc03'
         // 如果使用coil，增加依赖
-        implementation 'com.youliao.sdk:coil:1.2.0'
+        implementation 'com.youliao.sdk:coil:1.2.0-rc03'
    }
    ```
 
 3. 接入`adroi sdk`，并且之前没有接入过`adroi sdk`，请按照`adroi sdk`文档进行接入
 **注意**
-`1.2.8-beta01`版本对应的adroi sdk版本为`10.0.0.33`，请尽量保持一致，以免有兼容性问题
+`1.2.9-beta03`版本对应的adroi sdk版本为`10.0.0.39`，请尽量保持一致，以免有兼容性问题
 
 4. 接入`头条短视频sdk`：
 
@@ -73,7 +74,7 @@
         maven { url 'https://artifact.bytedance.com/repository/AwemeOpenSDK' }
 
         // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
-        implementation(name: 'open_ad_sdk_4.4.0.9', ext: 'aar')
+        implementation(name: 'open_ad_sdk_4.4.9.1', ext: 'aar')
         implementation ('com.pangle.cn:pangrowth-sdk:2.5.0.0'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
             exclude group: 'com.pangle.cn', module: 'pangrowth-novel-sdk' // 如果需要同时接入小说，需要删除本行
@@ -115,7 +116,7 @@
         maven { url 'https://artifact.bytedance.com/repository/AwemeOpenSDK' }
 
         // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
-        implementation(name: 'open_ad_sdk_4.4.0.9', ext: 'aar')
+        implementation(name: 'open_ad_sdk_4.4.9.1', ext: 'aar')
         implementation ('com.pangle.cn:pangrowth-sdk:2.5.0.0'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk' // 如果需要同时接入短视频（含图文），需要删除本行
@@ -159,12 +160,12 @@
 
 6. 接入`快手小视频sdk`：
 
-    1）添加sdk，可以在`sdk`目录下载`kssdk-all-3.3.24.6.aar`，如果之前有接入快手广告sdk需要`删除`原有aar包
+    1）添加sdk，可以在`sdk`目录下载`kssdk-ct-3.3.29-publishRelease-e75594e79-fullAbi.aar`，如果之前有接入快手广告sdk需要`删除`原有aar包
         
-        implementation(name: 'kssdk-all-3.3.24.6.aar', ext: 'aar')
+        implementation(name: 'kssdk-ct-3.3.29-publishRelease-e75594e79-fullAbi.aar', ext: 'aar')
         // 如果使用androidx，需要添加此依赖
         implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
-    
+
     2）初始化，为了合规请在用户同意协议之后调用：
 
         YouliaoNewsSdk.initKs(appid, "应用名称") // appid有料这边会提供
@@ -190,10 +191,7 @@
    	.setShareAppId("qqappid", "wxappid"); // qqappid，wxappid
     // 如果接入oaid，并且oaid版本为：1.0.25，可以依赖'com.youliao.sdk:msa:1.2.0'，或者自行实现OaidProvider接口
     .setOaidProvider(new MasOaidProvider(this))
-    // 可以依赖'com.youliao.sdk:amaplocation:1.2.0'，或者自行实现LocationProvider接口
-    // 如果在NewsFragment.newInstance中有传入city，请不要再调用该方法
-    .setLocationProvider(new AMapLocationProvider(this));
-   
+
    // 注意：此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
    YouliaoNewsSdk.requestSdkConfig();
    // 注意：此方法用于获取用户所在城市，请在获取定位权限后调用。
@@ -215,9 +213,6 @@
      setShareAppId("qqappid","wxappid")
     // 如果接入oaid，并且oaid版本为：1.0.25，可以依赖'com.youliao.sdk:msa:1.2.0'，或者自行实现OaidProvider接口
      setOaidProvider(MasOaidProvider(this@MyApplication))
-     // 可以依赖'com.youliao.sdk:amaplocation:1.2.0'，或者自行实现LocationProvider接口，或者不需要本地频道
-     // 如果在NewsFragment.newInstance中有传入city，请不要再调用该方法
-     setLocationProvider(AMapLocationProvider(this@MyApplication))
      // 注意：此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
      requestSdkConfig()
      // 注意：此方法用于获取用户所在城市，请在获取定位权限后调用
