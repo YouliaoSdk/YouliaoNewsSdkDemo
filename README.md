@@ -16,6 +16,7 @@
 | 1.2.7-beta03 | 2022-4-28 | 适配 adroi-sdk:10.0.0.29.2，头条内容合作-sdk版本号: 2.4.0.0 |
 | 1.2.8-beta01 | 2022-5-28 | 适配 adroi-sdk:10.0.0.33，头条内容合作-sdk版本号: 2.5.0.0 |
 | 1.2.9-beta03 | 2022-7-21 | 适配 adroi-sdk:10.0.0.39，头条内容合作-sdk版本号: 2.5.0.0 |
+| 1.3.0-beta01 | 2021-8-24 | 适配 adroi-sdk:10.0.0.45<br>头条内容合作-sdk版本号: 2.7.0.6<br>穿山甲广告-sdk版本号：4.6.0.7<br>快手-sdk版本号：3.3.29<br>百度内容-sdk版本号：9.22<br>百度小说-sdk版本号：6.0.3.5 |
 
 ## CHANGELOG
 - [CHANGELOG.md](./CHANGELOG.md)
@@ -52,17 +53,17 @@
    ```groovy
    dependencies {
         // 增加下面依赖
-        implementation 'com.youliao.sdk:news:1.2.9-beta03'
+        implementation 'com.youliao.sdk:news:1.3.0-beta01'
         // 如果使用glide4.x，增加依赖
-        implementation 'com.youliao.sdk:glide4:1.2.0-rc03'
+        implementation 'com.youliao.sdk:glide4:1.3.0-rc01'
         // 如果使用coil，增加依赖
-        implementation 'com.youliao.sdk:coil:1.2.0-rc03'
+        implementation 'com.youliao.sdk:coil:1.3.0-rc01'
    }
    ```
 
 3. 接入`adroi sdk`，并且之前没有接入过`adroi sdk`，请按照`adroi sdk`文档进行接入
 **注意**
-`1.2.9-beta03`版本对应的adroi sdk版本为`10.0.0.39`，请尽量保持一致，以免有兼容性问题
+`1.3.0-beta01`版本对应的adroi sdk版本为`10.0.0.45`，请尽量保持一致，以免有兼容性问题
 
 4. 接入`头条短视频sdk`：
 
@@ -74,8 +75,8 @@
         maven { url 'https://artifact.bytedance.com/repository/AwemeOpenSDK' }
 
         // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
-        implementation(name: 'open_ad_sdk_4.4.9.1', ext: 'aar')
-        implementation ('com.pangle.cn:pangrowth-sdk:2.5.0.0'){
+        implementation('com.pangle.cn:ads-sdk-pro:4.6.0.7')
+        implementation ('com.pangle.cn:pangrowth-sdk:2.7.0.6'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
             exclude group: 'com.pangle.cn', module: 'pangrowth-novel-sdk' // 如果需要同时接入小说，需要删除本行
             exclude group: 'com.pangle.cn', module: 'pangrowth-game-sdk'
@@ -116,8 +117,8 @@
         maven { url 'https://artifact.bytedance.com/repository/AwemeOpenSDK' }
 
         // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
-        implementation(name: 'open_ad_sdk_4.4.9.1', ext: 'aar')
-        implementation ('com.pangle.cn:pangrowth-sdk:2.5.0.0'){
+        implementation('com.pangle.cn:ads-sdk-pro:4.6.0.7')
+        implementation ('com.pangle.cn:pangrowth-sdk:2.7.0.6'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk' // 如果需要同时接入短视频（含图文），需要删除本行
             exclude group: 'com.pangle.cn', module: 'pangrowth-game-sdk'
@@ -177,6 +178,24 @@
     4) 新增快手合规开关
         YouliaoNewsSdk.updateKsRecommendation(false) // 默认true。true:推荐 false:合规
 
+7. 接入`百度小说sdk`：
+
+   1）添加sdk
+
+        //注意小说版本需要和百度内容版本匹配
+        implementation(name: 'novelsdk-6.0.3.5', ext: 'aar')
+
+   2）需要接入百度内容sdk，请参照adroi文档进行接入
+
+   3）初始化，为了合规请在用户同意协议之后调用：
+
+        YouliaoNewsSdk.initBaiduNovel(appsid, "应用名称") // appid有料这边会提供
+
+   4）获取小说单频道fragment
+
+        YouliaoNewsSdk.getBaiduNovelFragment()
+
+   
 ### 二、初始化及基本配置
 
 1. 在Application中的`onCreate`添加
@@ -285,12 +304,14 @@
 
    ```kotlin
    // kotlin
-   // 1：是否已经滑动到顶部（部分页面可能不支持），头条页面已不再支持
-   fun isScrollTop(): Boolean
-   // 2：刷新新闻，第一个参数表示是否跳转到第一个tab（部分页面可能不支持）
+   // 1：刷新新闻，第一个参数表示是否跳转到第一个tab（部分页面可能不支持）
    fun refreshData(firstTab: Boolean = false)
-   // 3：滑动到顶部，第一个参数表示是否平滑的滑动到顶部（部分页面可能不支持）
+   // 2：滑动到顶部，第一个参数表示是否平滑的滑动到顶部（部分页面可能不支持）
    fun scrollToTop(smooth: Boolean = false)
+   //3.设置全局字体大小
+   YouliaoNewsSdk.setNewsDetailFontSize(fontSize: FontSize)
+   //4.设置新闻详情页字体大小
+   YouliaoNewsSdk.setNewsDetailFontSize(fontSize: FontSize)
    ```
 
 ### 四、其他
