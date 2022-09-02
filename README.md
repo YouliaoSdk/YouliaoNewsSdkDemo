@@ -54,7 +54,7 @@
    ```groovy
    dependencies {
         // 增加下面依赖
-        implementation '01'
+        implementation 'com.youliao.sdk:news:1.3.0-beta03'
         // 如果使用glide4.x，增加依赖
         implementation 'com.youliao.sdk:glide4:1.3.0-rc01'
         // 如果使用coil，增加依赖
