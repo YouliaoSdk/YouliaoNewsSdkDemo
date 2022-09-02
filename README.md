@@ -17,6 +17,7 @@
 | 1.2.8-beta01 | 2022-5-28 | 适配 adroi-sdk:10.0.0.33，头条内容合作-sdk版本号: 2.5.0.0 |
 | 1.2.9-beta03 | 2022-7-21 | 适配 adroi-sdk:10.0.0.39，头条内容合作-sdk版本号: 2.5.0.0 |
 | 1.3.0-beta01 | 2021-8-24 | 适配 adroi-sdk:10.0.0.45<br>头条内容合作-sdk版本号: 2.7.0.6<br>穿山甲广告-sdk版本号：4.6.0.7<br>快手-sdk版本号：3.3.29<br>百度内容-sdk版本号：9.22<br>百度小说-sdk版本号：6.0.3.5 |
+| 1.3.0-beta03 | 2022-9-2 | 适配 adroi-sdk:10.0.0.51<br>头条内容合作-sdk版本号: 2.7.0.6<br>穿山甲广告-sdk版本号：4.7.1.2<br>快手-sdk版本号：3.3.31<br>百度内容-sdk版本号：9.23<br>百度小说-sdk版本号：6.0.3.5 |
 
 ## CHANGELOG
 - [CHANGELOG.md](./CHANGELOG.md)
@@ -53,7 +54,7 @@
    ```groovy
    dependencies {
         // 增加下面依赖
-        implementation 'com.youliao.sdk:news:1.3.0-beta01'
+        implementation '01'
         // 如果使用glide4.x，增加依赖
         implementation 'com.youliao.sdk:glide4:1.3.0-rc01'
         // 如果使用coil，增加依赖
@@ -63,19 +64,19 @@
 
 3. 接入`adroi sdk`，并且之前没有接入过`adroi sdk`，请按照`adroi sdk`文档进行接入
 **注意**
-`1.3.0-beta01`版本对应的adroi sdk版本为`10.0.0.45`，请尽量保持一致，以免有兼容性问题
+`1.3.0-beta03`版本对应的adroi sdk版本为`10.0.0.51`，请尽量保持一致，以免有兼容性问题
 
 4. 接入`头条短视频sdk`：
 
     1） 添加sdk
-    
+
         // 在allprojects的repositories中添加，如果需要同时接入小说，只需要添加一次
         maven { url "https://artifact.bytedance.com/repository/pangle/" }
         maven { url "https://artifact.bytedance.com/repository/Volcengine/" }
         maven { url 'https://artifact.bytedance.com/repository/AwemeOpenSDK' }
 
         // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
-        implementation('com.pangle.cn:ads-sdk-pro:4.6.0.7')
+        implementation('com.pangle.cn:ads-sdk-pro:4.7.1.2')
         implementation ('com.pangle.cn:pangrowth-sdk:2.7.0.6'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
             exclude group: 'com.pangle.cn', module: 'pangrowth-novel-sdk' // 如果需要同时接入小说，需要删除本行
@@ -117,7 +118,7 @@
         maven { url 'https://artifact.bytedance.com/repository/AwemeOpenSDK' }
 
         // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
-        implementation('com.pangle.cn:ads-sdk-pro:4.6.0.7')
+        implementation('com.pangle.cn:ads-sdk-pro:4.7.1.2')
         implementation ('com.pangle.cn:pangrowth-sdk:2.7.0.6'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
             exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk' // 如果需要同时接入短视频（含图文），需要删除本行
@@ -161,9 +162,9 @@
 
 6. 接入`快手小视频sdk`：
 
-    1）添加sdk，可以在`sdk`目录下载`kssdk-ct-3.3.29-publishRelease-e75594e79-fullAbi.aar`，如果之前有接入快手广告sdk需要`删除`原有aar包
+    1）添加sdk，可以在`sdk`目录下载`kssdk-ct-3.3.31-publishRelease-63a901486-fullAbi.aar`，如果之前有接入快手广告sdk需要`删除`原有aar包
         
-        implementation(name: 'kssdk-ct-3.3.29-publishRelease-e75594e79-fullAbi.aar', ext: 'aar')
+        implementation(name: 'kssdk-ct-3.3.31-publishRelease-63a901486-fullAbi.aar', ext: 'aar')
         // 如果使用androidx，需要添加此依赖
         implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
 
