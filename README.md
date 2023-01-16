@@ -59,7 +59,7 @@
    ```groovy
    dependencies {
         // 增加下面依赖
-        implementation 'com.youliao.sdk:news:1.3.0-beta03'
+        implementation 'com.youliao.sdk:news:1.3.6-beta04'
         // 如果使用glide4.x，增加依赖
         implementation 'com.youliao.sdk:glide4:1.3.0-rc01'
         // 如果使用coil，增加依赖
@@ -69,7 +69,7 @@
 
 3. 接入`adroi sdk`，并且之前没有接入过`adroi sdk`，请按照`adroi sdk`文档进行接入
 **注意**
-当前最新版本对应的adroi sdk版本为`10.0.0.51`，请尽量保持一致，以免有兼容性问题
+当前最新版本对应的adroi sdk版本为`10.0.0.63`，请尽量保持一致，以免有兼容性问题
 
 4. 接入`头条短视频sdk`：
 
@@ -81,12 +81,14 @@
         maven { url 'https://artifact.bytedance.com/repository/AwemeOpenSDK' }
 
         // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
-        implementation('com.pangle.cn:ads-sdk-pro:4.7.1.2')
-        implementation ('com.pangle.cn:pangrowth-sdk:2.7.0.6'){
-            exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
-            exclude group: 'com.pangle.cn', module: 'pangrowth-novel-sdk' // 如果需要同时接入小说，需要删除本行
+        implementation('com.pangle.cn:ads-sdk-pro:4.9.0.8')
+        implementation ('com.pangle.cn:pangrowth-sdk:2.9.0.4'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-game-sdk'
             exclude group: 'com.pangle.cn', module: 'pangrowth-luckycat-sdk'
+            exclude group: 'com.pangle.cn', module: 'partner-luckycat-api-sdk'
+            exclude group: 'com.pangle.cn', module: 'pangrowth-reward-sdk'
+            exclude group: 'com.pangle.cn', module: 'partner-live-sdk'
+            exclude group: 'com.pangle.cn', module: 'pangrowth-novel-sdk' // 如果需要同时接入小说，需要删除本行
         }
 
     2）需要接入穿山甲sdk，请参照adroi文档进行接入
@@ -123,12 +125,13 @@
         maven { url 'https://artifact.bytedance.com/repository/AwemeOpenSDK' }
 
         // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
-        implementation('com.pangle.cn:ads-sdk-pro:4.7.1.2')
-        implementation ('com.pangle.cn:pangrowth-sdk:2.7.0.6'){
-            exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk-live'
-            exclude group: 'com.pangle.cn', module: 'pangrowth-dpsdk' // 如果需要同时接入短视频（含图文），需要删除本行
+        implementation('com.pangle.cn:ads-sdk-pro:4.9.0.8')
+        implementation ('com.pangle.cn:pangrowth-sdk:2.9.0.4'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-game-sdk'
             exclude group: 'com.pangle.cn', module: 'pangrowth-luckycat-sdk'
+            exclude group: 'com.pangle.cn', module: 'partner-luckycat-api-sdk'
+            exclude group: 'com.pangle.cn', module: 'pangrowth-reward-sdk'
+            exclude group: 'com.pangle.cn', module: 'partner-live-sdk'
         }
        
     2）需要接入穿山甲sdk，请参照adroi文档进行接入
