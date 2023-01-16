@@ -20,6 +20,7 @@
 | 1.3.0-beta03 | 2022-9-2 | 适配 adroi-sdk:10.0.0.51<br>头条内容合作-sdk版本号: 2.7.0.6<br>穿山甲广告-sdk版本号：4.7.1.2<br>快手-sdk版本号：3.3.31<br>百度内容-sdk版本号：9.23<br>百度小说-sdk版本号：6.0.3.5 |
 | 1.3.2-beta06 | 2022-10-8 | 适配 adroi-sdk:10.0.0.51<br>头条内容合作-sdk版本号: 2.7.0.6<br>穿山甲广告-sdk版本号：4.7.1.2<br>快手-sdk版本号：3.3.31<br>百度内容-sdk版本号：9.23<br>百度小说-sdk版本号：6.0.3.5 |
 | 1.3.3-beta01 | 2022-11-18 | 新增百度小说书架列表api<br>新增番茄小说书架列表api<br>信息流item去除默认背景<br>编辑频道icon适配深色模式<br>优化每个频道首次请求成功后，不展示成功提示 |
+| 1.3.6-beta04 | 2023-1-16 | 适配 adroi-sdk:10.0.0.63<br>头条内容合作-sdk版本号: 2.9.0.4<br>快手内容-sdk版本号：3.3.32<br>百度小说-sdk版本号：6.0.3.6<br>百度广告-sdk版本号：9.25<br>gromore-sdk版本号：3.8.0.2<br>gradle升级至7.4<br>百度小说适配夜间模式<br>新增百度内容联盟热点专题<br>修复百度小说封面可能为null的问题<br> |
 
 ## CHANGELOG
 - [CHANGELOG.md](./CHANGELOG.md)
@@ -46,8 +47,10 @@
        repositories {
            google()
            jcenter()
-         	 // 增加下面一行
+           // 增加下面一行
            maven { url 'https://api.youliaokk.com:21380/repository/qj-feeds-sdk/' }
+           // 如需接入 快手小视频sdk 或者 百度小说sdk ，增加下面一行
+           // maven { url 'https://maven.freemeos.com:13458/repository/adroi/' }
        }
    }
    ```
@@ -164,9 +167,9 @@
 
 6. 接入`快手小视频sdk`：
 
-    1）添加sdk，可以在`sdk`目录下载`kssdk-ct-3.3.31-publishRelease-63a901486-fullAbi.aar`，如果之前有接入快手广告sdk需要`删除`原有aar包
+    1）添加sdk，如果之前有接入快手广告sdk需要`删除`原有aar包
         
-        implementation(name: 'kssdk-ct-3.3.31-publishRelease-63a901486-fullAbi.aar', ext: 'aar')
+        implementation 'com.kssdk.sdk:kssdk-ct:3.3.32'
         // 如果使用androidx，需要添加此依赖
         implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
 
@@ -186,7 +189,7 @@
    1）添加sdk
 
         //注意小说版本需要和百度内容版本匹配
-        implementation(name: 'novelsdk-6.0.3.5', ext: 'aar')
+        implementation 'com.baidu:novel.sdk:6.0.3.6'
 
    2）需要接入百度内容sdk，请参照adroi文档进行接入
 
