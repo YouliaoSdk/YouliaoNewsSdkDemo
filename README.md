@@ -21,6 +21,7 @@
 | 1.3.2-beta06 | 2022-10-8 | 适配 adroi-sdk:10.0.0.51<br>头条内容合作-sdk版本号: 2.7.0.6<br>穿山甲广告-sdk版本号：4.7.1.2<br>快手-sdk版本号：3.3.31<br>百度内容-sdk版本号：9.23<br>百度小说-sdk版本号：6.0.3.5 |
 | 1.3.3-beta01 | 2022-11-18 | 新增百度小说书架列表api<br>新增番茄小说书架列表api<br>信息流item去除默认背景<br>编辑频道icon适配深色模式<br>优化每个频道首次请求成功后，不展示成功提示 |
 | 1.3.6-beta04 | 2023-1-16 | 适配 adroi-sdk:10.0.0.63<br>头条内容合作-sdk版本号: 2.9.0.4<br>快手内容-sdk版本号：3.3.32<br>百度小说-sdk版本号：6.0.3.6<br>百度广告-sdk版本号：9.25<br>gromore-sdk版本号：3.8.0.2<br>gradle升级至7.4<br>百度小说适配夜间模式<br>新增百度内容联盟热点专题<br>修复百度小说封面可能为null的问题<br>移除头条小说 |
+| 1.4.2-beta04 | 2023-6-12 | 适配 gromore:3.9.0.0<br>接入搜狐api<br>开启 gromore bidding 比价结果通知 |
 
 ## CHANGELOG
 - [CHANGELOG.md](./CHANGELOG.md)
@@ -59,7 +60,7 @@
    ```groovy
    dependencies {
         // 增加下面依赖
-        implementation 'com.youliao.sdk:news:1.3.6-beta04'
+        implementation 'com.youliao.sdk:news:1.4.2-beta04'
         // 如果使用glide4.x，增加依赖
         implementation 'com.youliao.sdk:glide4:1.3.0-rc01'
         // 如果使用coil，增加依赖
@@ -80,15 +81,13 @@
         maven { url "https://artifact.bytedance.com/repository/Volcengine/" }
         maven { url 'https://artifact.bytedance.com/repository/AwemeOpenSDK' }
 
-        // 穿山甲广告Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
-        implementation('com.pangle.cn:ads-sdk-pro:4.9.0.8')
+        // 穿山甲内容Sdk，可以使用在线依赖的方式，也可以使用adroi提供的aar包
         implementation ('com.pangle.cn:pangrowth-sdk:2.9.0.4'){
             exclude group: 'com.pangle.cn', module: 'pangrowth-game-sdk'
             exclude group: 'com.pangle.cn', module: 'pangrowth-luckycat-sdk'
             exclude group: 'com.pangle.cn', module: 'partner-luckycat-api-sdk'
             exclude group: 'com.pangle.cn', module: 'pangrowth-reward-sdk'
             exclude group: 'com.pangle.cn', module: 'partner-live-sdk'
-            exclude group: 'com.pangle.cn', module: 'pangrowth-novel-sdk' // 如果需要同时接入小说，需要删除本行
         }
 
     2）需要接入穿山甲sdk，请参照adroi文档进行接入
@@ -115,7 +114,7 @@
             android:authorities="${applicationId}.BDDPProvider"
             android:exported="false" />
 
-5. 接入`快手小视频sdk`：
+6. 接入`快手小视频sdk`：
 
     1）添加sdk，如果之前有接入快手广告sdk需要`删除`原有aar包
         
@@ -134,7 +133,7 @@
     4) 新增快手合规开关
         YouliaoNewsSdk.updateKsRecommendation(false) // 默认true。true:推荐 false:合规
 
-6. 接入`百度小说sdk`：
+7. 接入`百度小说sdk`：
 
    1）添加sdk
 
